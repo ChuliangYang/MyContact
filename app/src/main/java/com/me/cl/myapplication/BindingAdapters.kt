@@ -20,5 +20,5 @@ import android.databinding.BindingAdapter
 
 @BindingAdapter("content")
 fun bindContent(view: CustomHeadView, first: String) {
-    view.character=first[0]
+    view.setCharacter(first[0])
 }
