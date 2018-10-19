@@ -19,6 +19,6 @@ package com.me.cl.myapplication
 import android.databinding.BindingAdapter
 
 @BindingAdapter("content")
-fun bindIsGone(view: CustomHeadView, first: String) {
+fun bindContent(view: CustomHeadView, first: String) {
     view.character=first[0]
 }
