@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="contact"
+            type="com.me.cl.myapplication.Contact"/>
+    </data>
+
+<android.support.constraint.ConstraintLayout
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.me.cl.myapplication.CustomHeadView
+        android:id="@+id/iv_character"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:content="@{contact.name}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@{contact.name}"
+        app:layout_constraintBottom_toTopOf="@+id/iv_character"
+        app:layout_constraintStart_toEndOf="@+id/iv_character"
+        app:layout_constraintTop_toBottomOf="@+id/iv_character" />
+
+</android.support.constraint.ConstraintLayout>
+</layout>
