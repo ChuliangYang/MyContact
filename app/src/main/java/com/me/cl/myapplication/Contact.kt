@@ -6,9 +6,8 @@ import android.os.Parcelable
 /**
  * Created by CL on 10/19/18.
  */
-data class Contact(val name:String) : Parcelable {
-    constructor(parcel: Parcel) : this(parcel.readString()) {
-    }
+data class Contact(val name: String) : Parcelable {
+    constructor(parcel: Parcel) : this(parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)

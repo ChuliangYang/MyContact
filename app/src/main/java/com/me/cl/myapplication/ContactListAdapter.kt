@@ -12,7 +12,6 @@ import com.me.cl.myapplication.databinding.ItemContactBinding
  */
 class ContactListAdapter(var contacts: MutableList<Contact>) : RecyclerView.Adapter<DataBindingViewHolder<ItemContactBinding>>(), ItemTouchDelegate {
 
-
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): DataBindingViewHolder<ItemContactBinding> {
         return DataBindingViewHolder(DataBindingUtil.inflate(LayoutInflater.from(p0.context), R.layout.item_contact, p0, false))
     }
@@ -34,6 +33,5 @@ class ContactListAdapter(var contacts: MutableList<Contact>) : RecyclerView.Adap
     }
 
 }
-
 
 class DataBindingViewHolder<T : ViewDataBinding>(val viewBinding: T) : RecyclerView.ViewHolder(viewBinding.root)

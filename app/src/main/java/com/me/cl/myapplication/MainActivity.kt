@@ -29,14 +29,17 @@ class MainActivity : RxAppCompatActivity() {
             contactListAdapter.contacts.add(Contact("Fake"))
             contactListAdapter.notifyItemInserted(contactListAdapter.contacts.size - 1)
             rv_contact_list.scrollToPosition(contactListAdapter.contacts.size - 1)
+//            contactListAdapter.contacts = sortList(contactListAdapter.contacts)
+//            contactListAdapter.notifyDataSetChanged()
         }
         if (savedInstanceState == null) {
             for (i in 1 until 20) {
-                data.add(Contact("aname"))
-                data.add(Contact("bname"))
-                data.add(Contact("cname"))
+                data.add(Contact("Bname"))
+                data.add(Contact("Cname"))
+                data.add(Contact("Aname"))
+
             }
-            Single.create<List<Contact>> {
+            Single.create<MutableList<Contact>> {
                 it.onSuccess(sortList(data))
             }.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread())
                     .compose(bindToLifecycle()).subscribe({ t ->
@@ -51,10 +54,13 @@ class MainActivity : RxAppCompatActivity() {
         }
     }
 
-    fun sortList(contacts: List<Contact>): List<Contact> {
-        return contacts.sortedWith(Comparator { t1, t2 ->
-            t1.name[0] - t2.name[0]
-        })
+    fun sortList(contacts: MutableList<Contact>): MutableList<Contact> {
+        return contacts.apply {
+            sortWith(Comparator { t1, t2 ->
+                t1.name.toUpperCase()[0] - t2.name.toUpperCase()[0]
+            })
+        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

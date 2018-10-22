@@ -15,13 +15,11 @@ class CustomHeadView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ImageView(context, attrs, defStyleAttr) {
 
-    var mPaintBackground: Paint=Paint(Paint.ANTI_ALIAS_FLAG)
-    var mPaintText: Paint= Paint(Paint.ANTI_ALIAS_FLAG)
+    var mPaintBackground: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    var mPaintText: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     var mRect: Rect = Rect()
 
     var character: Char? = null
-
-
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
