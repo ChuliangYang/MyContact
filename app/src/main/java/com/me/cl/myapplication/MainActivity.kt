@@ -60,7 +60,6 @@ class MainActivity : RxAppCompatActivity() {
                 t1.name.toUpperCase()[0] - t2.name.toUpperCase()[0]
             })
         }
-
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

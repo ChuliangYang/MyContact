@@ -6,9 +6,5 @@ List is sorted alphabetically (given an unsorted list)
 
 Each item consists first letter of the contact in a circle and Name of the contact
 
- 
-Additional:
 
-Add a new mock contact when fab button is pressed
-
-Remove contact on swipe
+Additional:Add a new mock contact when fab button is pressed and Remove contact on swipe
