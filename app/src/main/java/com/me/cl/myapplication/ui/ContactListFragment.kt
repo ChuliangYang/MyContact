@@ -55,7 +55,7 @@ class ContactListFragment : Fragment() {
         }
         viewModel = ViewModelProviders.of(this, ContactViewModelFactory()).get(ContactViewModel::class.java)
 
-        viewModel.observeListEvent().observe(this, Observer {
+        viewModel.subscribeListEvent().observe(this, Observer {
             when(it?.modifyType){
                 ModifyType.Init->{
                     contactListAdapter.apply {
@@ -81,7 +81,12 @@ class ContactListFragment : Fragment() {
             }
         })
 
-        viewModel.getSortedContactList()
+        if(savedInstanceState==null){
+            viewModel.getSortedContactList()
+        }else{
+            //Data will lose if activity is destroyed in background, use Room to persist state and restore if necessary.
+            viewModel.restoreContactList()
+        }
     }
 
 }

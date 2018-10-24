@@ -8,9 +8,8 @@ import com.me.cl.myapplication.utils.ReactUtil
  * Created by CL on 10/23/18.
  */
 class ContactRepository {
-    val data:MutableList<Contact>//Memory data source
+    var data:MutableList<Contact> = arrayListOf()//Memory data source
     init {
-        data=arrayListOf()
         for (i in 1 until 20) {
             data.apply {
                 add(Contact("Bname"))

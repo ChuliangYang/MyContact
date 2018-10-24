@@ -28,13 +28,17 @@ class ContactViewModel(val contactRepository: ContactRepository) : ViewModel() {
         }.apply {
             listEventLiveData.addSource(this) {
                 listEventLiveData.removeSource(this)
+                contactRepository.data= it?.toMutableList()?: mutableListOf()
                 listEventLiveData.value = ListEvent(ModifyType.Init, it)
             }
         }
-
     }
 
-    fun observeListEvent(): LiveData<ListEvent<Contact>> {
+    fun restoreContactList(){
+        listEventLiveData.value = ListEvent(ModifyType.Init, contactRepository.data)
+    }
+
+    fun subscribeListEvent(): LiveData<ListEvent<Contact>> {
         return listEventLiveData
     }
 }
