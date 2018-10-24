@@ -1,7 +1,11 @@
-package com.me.cl.myapplication
+package com.me.cl.myapplication.ui
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.me.cl.myapplication.R
+import com.me.cl.myapplication.adapter.ContactListAdapter
+import com.me.cl.myapplication.model.Contact
+import com.me.cl.myapplication.utils.CustomItemTouchHelper
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,35 +30,42 @@ class MainActivity : RxAppCompatActivity() {
             }
         }
         fb_add.setOnClickListener {
-            contactListAdapter.contacts.add(Contact("Fake"))
-            contactListAdapter.notifyItemInserted(contactListAdapter.contacts.size - 1)
-            rv_contact_list.scrollToPosition(contactListAdapter.contacts.size - 1)
-//            contactListAdapter.contacts = sortList(contactListAdapter.contacts)
-//            contactListAdapter.notifyDataSetChanged()
+            contactListAdapter.apply {
+                contacts.add(Contact("Fake"))
+                notifyItemInserted(contacts.size - 1)
+                rv_contact_list.scrollToPosition(contacts.size - 1)
+//              contacts = sortList(contacts)
+//              notifyDataSetChanged()
+            }
         }
         if (savedInstanceState == null) {
             for (i in 1 until 20) {
-                data.add(Contact("Bname"))
-                data.add(Contact("Cname"))
-                data.add(Contact("Aname"))
-
+                data.apply {
+                    add(Contact("Bname"))
+                    add(Contact("Cname"))
+                    add(Contact("Aname"))
+                }
             }
             Single.create<MutableList<Contact>> {
                 it.onSuccess(sortList(data))
             }.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread())
                     .compose(bindToLifecycle()).subscribe({ t ->
-                        contactListAdapter.contacts.clear()
-                        contactListAdapter.contacts.addAll(t)
-                        contactListAdapter.notifyDataSetChanged()
+                        contactListAdapter.apply {
+                            contacts.clear()
+                            contacts.addAll(t)
+                            notifyDataSetChanged()
+                        }
                     }, ::error)
         } else {
             data = savedInstanceState.getParcelableArrayList<Contact>(CONTACTS_KEY) ?: mutableListOf()
-            contactListAdapter.contacts = data
-            contactListAdapter.notifyDataSetChanged()
+            contactListAdapter.apply{
+                contacts = data
+                notifyDataSetChanged()
+            }
         }
     }
 
-    fun sortList(contacts: MutableList<Contact>): MutableList<Contact> {
+    private fun sortList(contacts: MutableList<Contact>): MutableList<Contact> {
         return contacts.apply {
             sortWith(Comparator { t1, t2 ->
                 t1.name.toUpperCase()[0] - t2.name.toUpperCase()[0]

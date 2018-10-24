@@ -1,4 +1,4 @@
-package com.me.cl.myapplication
+package com.me.cl.myapplication.utils
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -6,7 +6,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 /**
  * Created by CL on 10/19/18.
  */
-class CustomItemTouchHelper(val itemTouchDelegate:ItemTouchDelegate):ItemTouchHelper(object: Callback() {
+class CustomItemTouchHelper(val itemTouchDelegate: ItemTouchDelegate):ItemTouchHelper(object: Callback() {
     override fun getMovementFlags(p0: RecyclerView, p1: RecyclerView.ViewHolder): Int {
         return makeMovementFlags(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
     }

@@ -1,11 +1,14 @@
-package com.me.cl.myapplication
+package com.me.cl.myapplication.adapter
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.me.cl.myapplication.R
 import com.me.cl.myapplication.databinding.ItemContactBinding
+import com.me.cl.myapplication.model.Contact
+import com.me.cl.myapplication.utils.ItemTouchDelegate
 
 /**
  * Created by CL on 10/19/18.

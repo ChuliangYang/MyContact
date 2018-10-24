@@ -1,4 +1,4 @@
-package com.me.cl.myapplication
+package com.me.cl.myapplication.model
 
 import android.os.Parcel
 import android.os.Parcelable
